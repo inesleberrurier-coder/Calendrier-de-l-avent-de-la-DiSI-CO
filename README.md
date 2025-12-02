@@ -115,7 +115,6 @@ a{ color:#064E3B; font-weight:bold; }
   text-shadow: none;
 }
 </style>
-</head>
 <body>
 
 <h1>🎄 Calendrier de l'Avent 🎄</h1>
