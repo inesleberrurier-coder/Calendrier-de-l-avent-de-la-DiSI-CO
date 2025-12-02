@@ -1,5 +1,3 @@
-
-<html lang="fr">
 <meta charset="UTF-8">
 <title>🎄 Calendrier de l'Avent 🎄</title>
 <style>
