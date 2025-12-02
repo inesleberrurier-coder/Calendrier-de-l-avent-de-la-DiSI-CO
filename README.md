@@ -4,22 +4,120 @@
 <meta charset="UTF-8">
 <title>🎄 Calendrier de l'Avent 🎄</title>
 <style>
-body { font-family: Arial, sans-serif; background: #064E3B; color: #fff; text-align: center; margin:0; padding:20px; overflow: hidden; }
-h1 { margin-top: 0; font-size: 48px; color: #FFD700; text-shadow: 3px 3px 10px #000; animation: glow 2s infinite alternate; }
+body {
+  font-family: Arial, sans-serif;
+  background: #064E3B;
+  color: #fff;
+  text-align: center;
+  margin:0;
+  padding:20px;
+  overflow: hidden;
+}
+h1 {
+  margin-top: 0;
+  font-size: 48px;
+  color: #FFD700;
+  text-shadow: 3px 3px 10px #000;
+  animation: glow 2s infinite alternate;
+}
 @keyframes glow { from { text-shadow: 0 0 10px red; } to { text-shadow: 0 0 25px yellow; } }
 
-.calendar-container { max-height: 80vh; overflow-y: auto; margin:0 auto; }
-.calendar { display: grid; grid-template-columns: repeat(6, 150px); gap: 15px; justify-content: center; margin: 20px auto; }
-.day { background: #e63946; width:150px; height:150px; cursor: pointer; font-weight: bold; color: #fff; text-shadow: 1px 1px 2px #000; box-shadow: 0 6px 12px rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; font-size:28px; position: relative; }
-.day::before { content:'🎀'; position:absolute; top:5px; left:5px; font-size:20px; }
-.popup { display:none; position: fixed; z-index: 9999; left:50%; top:50%; transform: translate(-50%,-50%); background:#fff4d9; color:#000; padding:22px; border-radius:12px; width:480px; max-height:80vh; overflow:auto; box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
-.close { margin-top:12px; background:#e63946; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+.calendar-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin:0 auto;
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(6, 150px);
+  gap: 15px;
+  justify-content: center;
+  margin: 20px auto;
+}
+.day {
+  background: #e63946;
+  width:150px;
+  height:150px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  position: relative;
+  user-select: none;
+}
+.day::before {
+  content:'🎀';
+  position:absolute;
+  top:5px;
+  left:5px;
+  font-size:20px;
+}
+
+.popup {
+  display:none;
+  position: fixed;
+  z-index: 9999;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  background:#fff4d9;
+  color:#000;
+  padding:22px;
+  border-radius:12px;
+  width:480px;
+  max-height:80vh;
+  overflow:auto;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+.close {
+  margin-top:12px;
+  background:#e63946;
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
 input[type='text']{padding:6px; width:70%;}
 a{ color:#064E3B; font-weight:bold; }
-.popupSnowflake{position:absolute; top:-10px; color:white; user-select:none; pointer-events:none; font-size:14px; animation:fallPopup 6s linear infinite;}
+
+.popupSnowflake{
+  position:absolute;
+  top:-10px;
+  color:white;
+  user-select:none;
+  pointer-events:none;
+  font-size:14px;
+  animation:fallPopup 6s linear infinite;
+}
 @keyframes fallPopup{0%{transform:translateY(-10px)}100%{transform:translateY(300px)}}
-.snowflake{position:fixed; top:-10px; color:white; user-select:none; pointer-events:none; z-index:1; font-size:16px; animation:fallBackground 8s linear infinite;}
+
+.snowflake{
+  position:fixed;
+  top:-10px;
+  color:white;
+  user-select:none;
+  pointer-events:none;
+  z-index:1;
+  font-size:16px;
+  animation:fallBackground 8s linear infinite;
+}
 @keyframes fallBackground{0%{transform:translateY(-10px)}100%{transform:translateY(110vh)}}
+
+/* style pour cases verrouillées */
+.day.locked {
+  background: #555 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+  filter: grayscale(80%);
+  color: #ddd;
+  text-shadow: none;
+}
 </style>
 </head>
 <body>
@@ -27,9 +125,7 @@ a{ color:#064E3B; font-weight:bold; }
 <h1>🎄 Calendrier de l'Avent 🎄</h1>
 
 <div class="calendar-container">
-  <div class="calendar" id="calendar">
-    <!-- Cases générées automatiquement -->
-  </div>
+  <div class="calendar" id="calendar"></div>
 </div>
 
 <div id="popup" class="popup">
@@ -38,18 +134,80 @@ a{ color:#064E3B; font-weight:bold; }
 </div>
 
 <script>
-// Générer les cases 1 à 24
+// -----------------------------
+// Génération & verrouillage par date réelle
+// -----------------------------
+
 const calendar = document.getElementById('calendar');
-for(let i=1;i<=24;i++){
-  const dayDiv = document.createElement('div');
-  dayDiv.className = 'day';
-  dayDiv.textContent = i;
-  dayDiv.onclick = () => openPopup(i);
-  calendar.appendChild(dayDiv);
+
+// Utilitaire : obtient le jour actuel en local (1..31)
+function getCurrentDayNumber() {
+  const now = new Date();
+  return now.getDate();
 }
 
+// Génère les cases 1..24 et bloque les futures
+function generateCalendar() {
+  const currentDay = getCurrentDayNumber();
+  calendar.innerHTML = '';
+  for(let i=1;i<=24;i++){
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'day';
+    dayDiv.setAttribute('data-day', i);
+
+    if(i > currentDay){
+      // Case verrouillée (future)
+      dayDiv.classList.add('locked');
+      dayDiv.innerHTML = `${i} 🔒`;
+      // empêche le clic
+      dayDiv.style.pointerEvents = 'none';
+    } else {
+      // Case disponible
+      dayDiv.textContent = i;
+      dayDiv.style.pointerEvents = 'auto';
+      dayDiv.onclick = () => openPopup(i);
+    }
+    calendar.appendChild(dayDiv);
+  }
+}
+
+// -----------------------------
+// Déverrouillage automatique à minuit (sans rechargement)
+// -----------------------------
+
+function scheduleMidnightRefresh() {
+  const now = new Date();
+  // Prochain minuit local : créer date avec lendemain 00:00:00
+  const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1, 0);
+  const ms = nextMidnight - now;
+  // Planifier la régénération à minuit + 1s
+  setTimeout(() => {
+    generateCalendar();
+    // Relancer la planification pour les prochains jours
+    scheduleMidnightRefresh();
+  }, ms);
+  // Sécurité : aussi vérifier chaque minute (en cas de changement d'horloge)
+  setInterval(() => {
+    // si une case verrouillée devrait maintenant être déverrouillée, on regenère
+    const currentDay = getCurrentDayNumber();
+    const locked = document.querySelectorAll('.day.locked');
+    if(locked.length > 0){
+      // vérifier si au moins une locked a un numéro <= currentDay
+      for(const el of locked){
+        const d = parseInt(el.getAttribute('data-day'), 10);
+        if(d <= currentDay){
+          generateCalendar();
+          break;
+        }
+      }
+    }
+  }, 60 * 1000); // toutes les minutes
+}
+
+// -----------------------------
 // Neige en fond
-(function(){
+// -----------------------------
+(function createSnow(){
   const count=80;
   for(let i=0;i<count;i++){
     const el=document.createElement('div');
@@ -63,11 +221,12 @@ for(let i=1;i<=24;i++){
   }
 })();
 
-// Fonction ouvrir popup
+// -----------------------------
+// Popup & contenus (ton contenu d'origine)
+// -----------------------------
 function openPopup(day){
   const box=document.getElementById('popupContent');
   box.innerHTML='';
-  // Neige dans popup
   for(let i=0;i<30;i++){
     const f=document.createElement('div');
     f.className='popupSnowflake';
@@ -77,7 +236,7 @@ function openPopup(day){
     box.appendChild(f);
   }
 
-  // Contenus complets par jour
+  // Contenus selon le jour (copié depuis ton contenu initial)
   switch(day){
     case 1: box.innerHTML+=`<h2>Jour 1</h2><p><strong style='color:red;'>Info du Jour🗞️</strong> La DiSI CO a été <strong>parmi les premiers</strong> établissements à mettre en place l'intranet ULLO.</p>`; break;
     case 2: box.innerHTML+=`<h2>Jour 2</h2><p><strong style='color:red;'>Quiz :</strong> Savez-vous par qui a été développé l'outil TaToo météo ?</p>
@@ -99,22 +258,22 @@ function openPopup(day){
       <label><input type='radio' name='ans5' value='1962'> 1962</label><br>
       <label><input type='radio' name='ans5' value='1970'> 1970</label><br>
       <button type='button' onclick='checkQuiz("quiz5","1956","res5","info5")'>Valider</button></form><p id='res5'></p>`; break;
-    case 6: box.innerHTML+=`<h2>Jour 6</h2><p>Recette pour un apéro réussi 🍽️ : <a href='https://www.marmiton.org/recettes/recette_sapin-feuillete-au-pesto_383379.aspx' target='_blank'>Sapin feuilleté au pesto</a></p>`; break;
-    case 7: box.innerHTML+=`<h2>Jour 7</h2><p>Une autre recette pour l'apéro : <a href='https://www.marmiton.org/recettes/recette_gougeres-au-fromage_20095.aspx' target='_blank'>Gougères au fromage</a></p>`; break;
-    case 8: box.innerHTML+=`<h2>Jour 8</h2><p>Contenu à ajouter pour le jour 8.</p>`; break;
-    case 9: box.innerHTML+=`<h2>Jour 9</h2><p>Contenu à ajouter pour le jour 9.</p>`; break;
-    case 10: box.innerHTML+=`<h2>Jour 10</h2><p>Contenu à ajouter pour le jour 10.</p>`; break;
-    case 11: box.innerHTML+=`<h2>Jour 11</h2><p>Contenu à ajouter pour le jour 11.</p>`; break;
-    case 12: box.innerHTML+=`<h2>Jour 12</h2><p><strong>En lumière :</strong> Nous avons 2 ruches pour la biodiversité 🍯🐝</p>
+    case 6: box.innerHTML+=`<h2>Jour 6</h2><p>Recette apéro : <a href='https://www.marmiton.org/recettes/recette_sapin-feuillete-au-pesto_383379.aspx' target='_blank'>Sapin feuilleté au pesto</a></p>`; break;
+    case 7: box.innerHTML+=`<h2>Jour 7</h2><p>Recette apéro : <a href='https://www.marmiton.org/recettes/recette_gougeres-au-fromage_20095.aspx' target='_blank'>Gougères au fromage</a></p>`; break;
+    case 8: box.innerHTML+=`<h2>Jour 8</h2><p>Contenu à ajouter.</p>`; break;
+    case 9: box.innerHTML+=`<h2>Jour 9</h2><p>Contenu à ajouter.</p>`; break;
+    case 10: box.innerHTML+=`<h2>Jour 10</h2><p>Contenu à ajouter.</p>`; break;
+    case 11: box.innerHTML+=`<h2>Jour 11</h2><p>Contenu à ajouter.</p>`; break;
+    case 12: box.innerHTML+=`<h2>Jour 12</h2><p><strong>En lumière :</strong> Nous avons 2 ruches aux Marsauderies pour la biodiversité 🍯🐝 et nous avons reçu des pots de miel.<p>Quiz : à votre avis, combien une abeille produit-elle de miel au cours de sa vie ? (g)</p>
       <input type="text" id="quiz12Input" placeholder="Votre réponse">
       <button type="button" onclick="checkOpenAnswer12()">Valider</button>
       <p id="quiz12Result"></p>`; break;
-    case 13: box.innerHTML+=`<h2>Jour 13</h2><p>Recette de Noël : <a href='https://www.marmiton.org/recettes/recette_huitres-gratinees-au-parmesan_56242.aspx' target='_blank'>Huîtres gratinées</a></p>`; break;
+    case 13: box.innerHTML+=`<h2>Jour 13</h2><p>Recette : <a href='https://www.marmiton.org/recettes/recette_huitres-gratinees-au-parmesan_56242.aspx' target='_blank'>Huîtres gratinées</a></p>`; break;
     case 14: box.innerHTML+=`<h2>Jour 14</h2><p>Marchés de Noël en Loire-Atlantique : <a href='https://44.kidiklik.fr/articles/335276-les-marches-de-noel-nantes-et-en-loire-atlantique.html' target='_blank'>Voir la liste</a></p>`; break;
     case 15: box.innerHTML+=`<h2>Jour 15</h2><p>Relamping des néons remplacés par LED 💡</p>`; break;
-    case 16: box.innerHTML+=`<h2>Jour 16</h2><p>Contenu à ajouter pour le jour 16.</p>`; break;
+    case 16: box.innerHTML+=`<h2>Jour 16</h2><p>Contenu à ajouter.</p>`; break;
     case 17: box.innerHTML+=`<h2>Jour 17</h2><p>Concours des pulls de Noël 🎅 Prenez vos plus beaux pulls et gagnez des chocolats 🍫</p>`; break;
-    case 18: box.innerHTML+=`<h2>Jour 18</h2><p>Contenu à ajouter pour le jour 18.</p>`; break;
+    case 18: box.innerHTML+=`<h2>Jour 18</h2><p>Contenu à ajouter.</p>`; break;
     case 19: box.innerHTML+=`<h2>Jour 19</h2><p>Journée mondiale du pull de Noël 🎄</p>
       <form id='quiz19'><label><input type='radio' name='ans19' value='France'> France</label><br>
       <label><input type='radio' name='ans19' value='Suisse'> Suisse</label><br>
@@ -122,20 +281,21 @@ function openPopup(day){
       <button type='button' onclick='checkQuiz("quiz19","Angleterre","res19","info19")'>Valider</button></form>
       <p id='res19'></p>
       <p id='info19' style='display:none;'>La tradition vient d'Angleterre en 1980.</p>`; break;
-    case 20: box.innerHTML+=`<h2>Jour 20</h2><p>Recette vin chaud : <a href='https://www.marmiton.org/recettes/recette_vin-chaud-aux-epices_25224.aspx' target='_blank'>Vin chaud aux épices</a></p>`; break;
+    case 20: box.innerHTML+=`<h2>Jour 20</h2><p>Vin chaud : <a href='https://www.marmiton.org/recettes/recette_vin-chaud-aux-epices_25224.aspx' target='_blank'>Vin chaud aux épices</a></p>`; break;
     case 21: box.innerHTML+=`<h2>Jour 21</h2><p>Repas chaud : <a href='https://www.marmiton.org/recettes/recette_gratin-dauphinois_13809.aspx' target='_blank'>Gratin dauphinois</a></p>`; break;
-    case 22: box.innerHTML+=`<h2>Jour 22</h2><p>Contenu à ajouter pour le jour 22.</p>`; break;
-    case 23: box.innerHTML+=`<h2>Jour 23</h2><p>Contenu à ajouter pour le jour 23.</p>`; break;
-    case 24: box.innerHTML+=`<h2>Jour 24</h2><p>Contenu à ajouter pour le jour 24.</p>`; break;
+    case 22: box.innerHTML+=`<h2>Jour 22</h2><p>Contenu à ajouter.</p>`; break;
+    case 23: box.innerHTML+=`<h2>Jour 23</h2><p>Contenu à ajouter.</p>`; break;
+    case 24: box.innerHTML+=`<h2>Jour 24</h2><p>Contenu à ajouter.</p>`; break;
   }
 
   document.getElementById('popup').style.display='block';
 }
 
-// Fermer popup
 function closePopup(){ document.getElementById('popup').style.display='none'; }
 
-// Vérification quiz
+// -----------------------------
+// Fonctions de quiz
+// -----------------------------
 function checkQuiz(formId, correct, resId, infoId){
   const form=document.getElementById(formId);
   const selected=form?form.querySelector('input[type=radio]:checked'):null;
@@ -154,7 +314,13 @@ function checkOpenAnswer12(){
   if(!v) { r.textContent='Veuillez entrer une réponse.'; return; }
   r.innerHTML='Réponse : une abeille ne produit qu\'1/12 de cuillère à café de miel, soit environ 7 grammes.';
 }
-</script>
 
+// -----------------------------
+// Initialisation
+// -----------------------------
+generateCalendar();
+scheduleMidnightRefresh();
+
+</script>
 </body>
 </html>
