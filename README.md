@@ -233,7 +233,7 @@ function openPopup(day){
 
   // Contenus selon le jour (copié depuis ton contenu initial)
   switch(day){
-    case 1: box.innerHTML+=`<h2>Jour 1</h2><p><strong style='color:red;'>Info du Jour🗞️</strong> La DiSI CO a été <strong>parmi les premieres</strong> direction à mettre en place l'intranet ULLO.</p>`; break;
+    case 1: box.innerHTML+=`<h2>Jour 1</h2><p><strong style='color:red;'>Info du Jour🗞️</strong> la DiSI CO a été parmi les premières </strong> directions à mettre en place l’intranet ULLO.</p>`; break;
     case 2: box.innerHTML+=`<h2>Jour 2</h2><p><strong style='color:red;'>Quiz :</strong> Savez-vous par qui a été développé l'outil TaToo météo ?</p>
       <form id='quiz2'><label><input type='radio' name='ans2' value='Nantes'> Nantes</label><br>
       <label><input type='radio' name='ans2' value='Angers'> Angers</label><br>
