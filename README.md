@@ -241,7 +241,11 @@ function openPopup(day){
       <button type='button' onclick='checkQuiz("quiz2","Angers","res2","info2")'>Valider</button></form>
       <p id='res2'></p>
       <p id='info2' style='display:none;'>TaToo météo a été déployé à l'échelle nationale sur environ 120 000 postes entre mars et mai 2025.</p>`; break;
-    case 3: box.innerHTML+=`<h2>Jour 3</h2><p><strong style='color:red;'>Info du Jour</strong> Tous les ans l'ESI d'Orléans participe au Cross de Bercy. Bravo aux participants !</p>`; break;
+    case 3: box.innerHTML+=`<h2>Jour 3</h2><p><strong style='color:red;'>Info du Jour</strong> Tous les ans l'ESI d'Orléans participe au Cross de Bercy. Cette année :<br>
+    🏆Nicolas 5km 322eme<br>
+    🏆Eric 10km 322eme<br>
+    🏆Charles-Etienne 10km 127eme<br>
+    Bravo aux participants !</p>`; break;
     case 4: box.innerHTML+=`<h2>Jour 4</h2><p><strong style='color:red;'>Quiz :</strong> Combien d’agneaux la DiSI CO a eu ce printemps ?</p>
       <form id='quiz4'><label><input type='radio' name='ans4' value='1'> 1</label><br>
       <label><input type='radio' name='ans4' value='2'> 2</label><br>
