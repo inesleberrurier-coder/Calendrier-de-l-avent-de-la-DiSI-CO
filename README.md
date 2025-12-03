@@ -321,5 +321,3 @@ generateCalendar();
 scheduleMidnightRefresh();
 
 </script>
-</body>
-</html>
