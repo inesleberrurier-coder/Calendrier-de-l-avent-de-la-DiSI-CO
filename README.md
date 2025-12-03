@@ -233,7 +233,7 @@ function openPopup(day){
 
   // Contenus selon le jour (copié depuis ton contenu initial)
   switch(day){
-    case 1: box.innerHTML+=`<h2>Jour 1</h2><p><strong style='color:red;'>Info du Jour🗞️</strong> La DiSI CO a été <strong>parmi les premiers</strong> établissements à mettre en place l'intranet ULLO.</p>`; break;
+    case 1: box.innerHTML+=`<h2>Jour 1</h2><p><strong style='color:red;'>Info du Jour🗞️</strong> La DiSI CO a été <strong>parmi les premieres</strong> direction à mettre en place l'intranet ULLO.</p>`; break;
     case 2: box.innerHTML+=`<h2>Jour 2</h2><p><strong style='color:red;'>Quiz :</strong> Savez-vous par qui a été développé l'outil TaToo météo ?</p>
       <form id='quiz2'><label><input type='radio' name='ans2' value='Nantes'> Nantes</label><br>
       <label><input type='radio' name='ans2' value='Angers'> Angers</label><br>
@@ -243,7 +243,7 @@ function openPopup(day){
       <p id='info2' style='display:none;'>TaToo météo a été déployé à l'échelle nationale sur environ 120 000 postes entre mars et mai 2025.</p>`; break;
     case 3: box.innerHTML+=`<h2>Jour 3</h2><p><strong style='color:red;'>Info du Jour</strong> Tous les ans l'ESI d'Orléans participe au Cross de Bercy. Cette année :<br>
     🏆Nicolas 5km 322eme<br>
-    🏆Eric 10km 322eme<br>
+    🏆Eric 10km 630eme<br>
     🏆Charles-Etienne 10km 127eme<br>
     Bravo aux participants !</p>`; break;
     case 4: box.innerHTML+=`<h2>Jour 4</h2><p>Le site des Marsauderies accueille chaque année des nouveaux moutons 🐑</p><strong style='color:red;'>Quiz :</strong> Combien d’agneaux la DiSI CO a eu ce printemps ?</p>
@@ -252,7 +252,7 @@ function openPopup(day){
       <label><input type='radio' name='ans4' value='3'> 3</label><br>
       <button type='button' onclick='checkQuiz("quiz4","3","res4","info4")'>Valider</button></form>
       <p id='res4'></p>`; break;
-    case 5: box.innerHTML+=`<h2>Jour 5</h2><p><strong style='color:red;'>Quiz :</strong> En quelle année l’IA a été créée ?</p>
+    case 5: box.innerHTML+=`<h2>Jour 5</h2><p><strong style='color:red;'>Quiz :</strong> Le mois dernier a eu lieu le mois de l'innovation publique avec pour thème principal l'IA, savez vous en quelle année l’IA a été créée ?</p>
       <form id='quiz5'><label><input type='radio' name='ans5' value='1956'> 1956</label><br>
       <label><input type='radio' name='ans5' value='1962'> 1962</label><br>
       <label><input type='radio' name='ans5' value='1970'> 1970</label><br>
@@ -269,17 +269,14 @@ function openPopup(day){
       <p id="quiz12Result"></p>`; break;
     case 13: box.innerHTML+=`<h2>Jour 13</h2><p>Recette : <a href='https://www.marmiton.org/recettes/recette_huitres-gratinees-au-parmesan_56242.aspx' target='_blank'>Huîtres gratinées</a></p>`; break;
     case 14: box.innerHTML+=`<h2>Jour 14</h2><p>Marchés de Noël en Loire-Atlantique : <a href='https://44.kidiklik.fr/articles/335276-les-marches-de-noel-nantes-et-en-loire-atlantique.html' target='_blank'>Voir la liste</a></p>`; break;
-    case 15: box.innerHTML+=`<h2>Jour 15</h2><p>Relamping des néons remplacés par LED 💡</p>`; break;
+    case 15: box.innerHTML+=`<h2>Jour 15<p><strong style='color:red;'>Info du Jour<p></strong></h2><p>Relamping du couloir du rez-de-chaussée :<p></strong> les néons ont été remplacés par des panneaux LED💡 Cette démarche s'inscrit dans la politique <strong>ÉcoFiP</strong> de la direction<p>une vraie action écologique : réduction de la consommation électrique et moins de déchets.</p>`; break;
     case 16: box.innerHTML+=`<h2>Jour 16</h2><p>Contenu à ajouter.</p>`; break;
-    case 17: box.innerHTML+=`<h2>Jour 17</h2><p>Concours des pulls de Noël 🎅 Prenez vos plus beaux pulls et gagnez des chocolats 🍫</p>`; break;
+case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des pulls de Noël le 15 décembre 🎅 ! Venez avec vos plus beaux pulls et gagnez vos chocolats 🍫 ! Nous prendrons une photo pour le vote final 📸.</p>`; break;
     case 18: box.innerHTML+=`<h2>Jour 18</h2><p>Contenu à ajouter.</p>`; break;
-    case 19: box.innerHTML+=`<h2>Jour 19</h2><p>Journée mondiale du pull de Noël 🎄</p>
-      <form id='quiz19'><label><input type='radio' name='ans19' value='France'> France</label><br>
-      <label><input type='radio' name='ans19' value='Suisse'> Suisse</label><br>
-      <label><input type='radio' name='ans19' value='Angleterre'> Angleterre</label><br>
-      <button type='button' onclick='checkQuiz("quiz19","Angleterre","res19","info19")'>Valider</button></form>
-      <p id='res19'></p>
-      <p id='info19' style='display:none;'>La tradition vient d'Angleterre en 1980.</p>`; break;
+   case 19: box.innerHTML+=`<h2>Jour 19</h2><p>🎉 Aujourd'hui, c'est la Journée mondiale du pull de Noël 🎄</p><p><strong style='color:red;'>Quiz :</strong> Savez-vous d'où vient la tradition du jour des pulls de Noël ?</p><form id='quiz19'><label><input type='radio' name='ans19' value='France'> France</label><br><label><input type='radio' name='ans19' value='Suisse'> Suisse</label><br><label><input type='radio' name='ans19' value='Angleterre'> Angleterre</label><br><button type='button' onclick='checkQuiz("quiz19","Angleterre","res19","info19")'>Valider</button></form><p id='res19'></p><p id='info19' style='display:none;'>La tradition trouve ses origines en Angleterre en 1980. Mais ce n’est que dans les années 2000 que le pull trouvera son succès grâce au film “Bridget Jones“.</p> <p>Rappel : Une photo peut être proposée dans les établissements, a la DiSI CO rendez-vous à 11h30 dans le hall des Marsauderies pour participer au concours des pulls de Noël 🎁 !</p> <hr>`;
+      `;
+  `;
+    break;
     case 20: box.innerHTML+=`<h2>Jour 20</h2><p>Vin chaud : <a href='https://www.marmiton.org/recettes/recette_vin-chaud-aux-epices_25224.aspx' target='_blank'>Vin chaud aux épices</a></p>`; break;
     case 21: box.innerHTML+=`<h2>Jour 21</h2><p>Repas chaud : <a href='https://www.marmiton.org/recettes/recette_gratin-dauphinois_13809.aspx' target='_blank'>Gratin dauphinois</a></p>`; break;
     case 22: box.innerHTML+=`<h2>Jour 22</h2><p>Contenu à ajouter.</p>`; break;
