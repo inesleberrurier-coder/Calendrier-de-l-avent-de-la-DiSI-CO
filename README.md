@@ -246,7 +246,7 @@ function openPopup(day){
     🏆Eric 10km 322eme<br>
     🏆Charles-Etienne 10km 127eme<br>
     Bravo aux participants !</p>`; break;
-    case 4: box.innerHTML+=`<h2>Jour 4</h2><p><strong style='color:red;'>Quiz :</strong> Combien d’agneaux la DiSI CO a eu ce printemps ?</p>
+    case 4: box.innerHTML+=`<h2>Jour 4</h2><p>Le site des Marsauderies accueille chaque année des nouveaux moutons 🐑</p><strong style='color:red;'>Quiz :</strong> Combien d’agneaux la DiSI CO a eu ce printemps ?</p>
       <form id='quiz4'><label><input type='radio' name='ans4' value='1'> 1</label><br>
       <label><input type='radio' name='ans4' value='2'> 2</label><br>
       <label><input type='radio' name='ans4' value='3'> 3</label><br>
