@@ -356,7 +356,17 @@ case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des
     case 21: box.innerHTML+=`<h2>Jour 21</h2><p>Repas chaud : <a href='https://www.marmiton.org/recettes/recette_gratin-dauphinois_13809.aspx' target='_blank'>Gratin dauphinois</a></p>`; break;
     case 22: box.innerHTML+=`<h2>Jour 22</h2><p>Contenu à ajouter.</p>`; break;
     case 23: box.innerHTML+=`<h2>Jour 23</h2><p>Contenu à ajouter.</p>`; break;
-    case 24: box.innerHTML+=`<h2>Jour 24</h2><p>Contenu à ajouter.</p>`; break;
+    case 24:
+  box.innerHTML += `
+    <h2>Jour 24</h2>
+    <p><strong style='color:red;'>🎄 Bonne fête de fin d'année à tous ! 🎄</strong></p>
+
+    <p>Un grand merci à toutes celles et ceux qui ont rejoint la DiSI et ses établissements au cours de l’année. Nous sommes ravis de vous compter parmi nous, et bravo pour votre engagement au quotidien ! ❤️</p>
+
+    <p><strong>PS :</strong> N’oubliez pas… aujourd’hui, c’est aussi l’anniversaire de <strong>Christophe Marionneau</strong> 🎂🥳  
+    Pensez à lui souhaiter ! 😉</p>
+  `;
+  break;
   }
 
   document.getElementById('popup').style.display='block';
