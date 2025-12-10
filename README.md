@@ -328,7 +328,7 @@ function openPopup(day){
     <p>Merci à eux pour leur engagement et leur enthousiasme ! ❤️</p>
   `;
   break;
-case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des pulls de Noël le 19 décembre 🎅 ! Venez avec vos plus beaux pulls et gagnez vos chocolats 🍫 ! Nous prendrons une photo pour le vote final 📸.</p>`; break;
+ case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des pulls de Noël le 19 décembre 🎅 ! <p>Venez avec votre plus beau pull de Noël et gagnez des chocolats 🍫 ! <p>A la DiSI nous prendrons une photo a 11H30 dans le hall des Marsauderies pour le vote final 📸.</p>`; break;
     case 18:
   box.innerHTML += `
     <h2>Jour 18</h2>
@@ -354,31 +354,33 @@ case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des
     break;
     case 20: box.innerHTML+=`<h2>Jour 20</h2><p>Vin chaud : <a href='https://www.marmiton.org/recettes/recette_vin-chaud-aux-epices_25224.aspx' target='_blank'>Vin chaud aux épices</a></p>`; break;
     case 21: box.innerHTML+=`<h2>Jour 21</h2><p>Repas chaud : <a href='https://www.marmiton.org/recettes/recette_gratin-dauphinois_13809.aspx' target='_blank'>Gratin dauphinois</a></p>`; break;
-    case 22:
+   case 22:
   box.innerHTML += `
     <h2>Jour 22</h2>
     <p><strong style="color:red;">Quiz du jour ❓📞</strong></p>
 
-    <p>Savez-vous quel site a été le <strong>dernier à basculer vers la portabilité ToIP</strong>
+    <p>Savez-vous combien de sites ont basculé vers la <strong>portabilité ToIP</strong> cette année&nbsp;?</p>
 
     <form id="quiz22">
       <label>
-        <input type="radio" name="ans22" value="Béranger">
-        Le site de <strong>Béranger</strong>
+        <input type="radio" name="ans22" value="19">
+        19
       </label><br>
 
       <label>
-        <input type="radio" name="ans22" value="Coulongé">
-        Le site de <strong>Coulongé</strong>
+        <input type="radio" name="ans22" value="21">
+        21
+      </label><br>
+
+      <label>
+        <input type="radio" name="ans22" value="28">
+        28
       </label><br><br>
 
       <button type="button" onclick="checkQuiz22()">Valider</button>
     </form>
 
     <p id="res22" style="font-weight:bold; margin-top:10px;"></p>
-    <p id="info22" style="display:none; margin-top:10px;">
-      🎉 Bravo aux équipes de l’ESI de Tours pour cette belle avancée !
-    </p>
   `;
   break;
     case 23: box.innerHTML+=`<h2>Jour 23</h2><p>Contenu à ajouter.</p>`; break;
