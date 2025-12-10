@@ -354,17 +354,80 @@ case 17: box.innerHTML+=`<h2>Jour 17</h2><p><strong>Info :</strong> Concours des
     break;
     case 20: box.innerHTML+=`<h2>Jour 20</h2><p>Vin chaud : <a href='https://www.marmiton.org/recettes/recette_vin-chaud-aux-epices_25224.aspx' target='_blank'>Vin chaud aux épices</a></p>`; break;
     case 21: box.innerHTML+=`<h2>Jour 21</h2><p>Repas chaud : <a href='https://www.marmiton.org/recettes/recette_gratin-dauphinois_13809.aspx' target='_blank'>Gratin dauphinois</a></p>`; break;
-    case 22: box.innerHTML+=`<h2>Jour 22</h2><p>Contenu à ajouter.</p>`; break;
+    case 22:
+  box.innerHTML += `
+    <h2>Jour 22</h2>
+    <p><strong style="color:red;">Quiz du jour ❓📞</strong></p>
+
+    <p>Savez-vous quel site a été le <strong>dernier à basculer vers la portabilité ToIP</strong>
+
+    <form id="quiz22">
+      <label>
+        <input type="radio" name="ans22" value="Béranger">
+        Le site de <strong>Béranger</strong>
+      </label><br>
+
+      <label>
+        <input type="radio" name="ans22" value="Coulongé">
+        Le site de <strong>Coulongé</strong>
+      </label><br><br>
+
+      <button type="button" onclick="checkQuiz22()">Valider</button>
+    </form>
+
+    <p id="res22" style="font-weight:bold; margin-top:10px;"></p>
+    <p id="info22" style="display:none; margin-top:10px;">
+      🎉 Bravo aux équipes de l’ESI de Tours pour cette belle avancée !
+    </p>
+  `;
+  break;
     case 23: box.innerHTML+=`<h2>Jour 23</h2><p>Contenu à ajouter.</p>`; break;
     case 24:
   box.innerHTML += `
     <h2>Jour 24</h2>
-    <p><strong style='color:red;'>🎄 Bonne fête de fin d'année à tous ! 🎄</strong></p>
 
-    <p>Un grand merci à toutes celles et ceux qui ont rejoint la DiSI et ses établissements au cours de l’année. Nous sommes ravis de vous compter parmi nous, et bravo pour votre engagement au quotidien ! ❤️</p>
+    <div style="position:relative; padding:15px; border:2px solid #c62828; border-radius:12px; background:#fff; color:#111; overflow:hidden;">
 
-    <p><strong>PS :</strong> N’oubliez pas… aujourd’hui, c’est aussi l’anniversaire de <strong>Christophe Marionneau</strong> 🎂🥳  
-    Pensez à lui souhaiter ! 😉</p>
+      <p><strong>Message de la Directrice</strong></p>
+      <p>
+        Je vous souhaite de très joyeuses fêtes de fin d’année, pleines de joie,
+        de sérénité et de beaux moments partagés.
+      </p>
+      <p>
+        Je remercie chaleureusement toutes les personnes ayant rejoint la DiSI
+        et ses établissements au cours de cette année.
+      </p>
+      <p>
+        Merci à toutes et à tous pour votre engagement.
+      </p>
+
+      <!-- Cotillons -->
+      <div class="confetti-container">
+        <div class="confetti" style="left:10%; background:#e63946;"></div>
+        <div class="confetti" style="left:25%; background:#f1c40f;"></div>
+        <div class="confetti" style="left:40%; background:#4caf50;"></div>
+        <div class="confetti" style="left:55%; background:#2196f3;"></div>
+        <div class="confetti" style="left:70%; background:#ff9800;"></div>
+        <div class="confetti" style="left:85%; background:#9c27b0;"></div>
+      </div>
+
+      <style>
+        .confetti-container { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
+        .confetti {
+          position:absolute;
+          width:6px;
+          height:12px;
+          opacity:0.9;
+          animation: fall 3s linear infinite;
+        }
+        .confetti:nth-child(odd) { animation-duration:2.5s; }
+        .confetti:nth-child(even) { animation-duration:3.5s; }
+
+        @keyframes fall {
+          0% { top:-10px; transform:rotate(0deg); }
+          100% { top:120%; transform:rotate(360deg); }
+        }
+      </style
   `;
   break;
   }
