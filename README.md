@@ -389,15 +389,14 @@ function openPopup(day){
 
       <p><strong>Message de la Directrice</strong></p>
       <p>
-        Je vous souhaite de très joyeuses fêtes de fin d’année, pleines de joie,
-        de sérénité et de beaux moments partagés.
+        Chers collègues,
+Merci pour votre engagement et votre professionnalisme au quotidien.
       </p>
       <p>
-        Je remercie chaleureusement toutes les personnes ayant rejoint la DiSI
-        et ses établissements au cours de cette année.
+        C'est grâce à chacun d’entre vous que le système d’information apporte, chaque jour, à nos collègues, nos partenaires et nos usagers, ce dont ils ont le plus besoin : un environnement numérique et d’assistance de qualité, disponible, efficace et sécurisé. Bravo.
       </p>
       <p>
-        Merci à toutes et à tous pour votre engagement.
+       Je vous souhaite à toutes et à tous de très belles fêtes de fin d’année.
       </p>
 
       <!-- Cotillons -->
